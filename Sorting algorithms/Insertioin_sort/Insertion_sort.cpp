@@ -1,36 +1,30 @@
 #include <iostream>
-#include <bits/stdc++.h>
+#include <vector>
 using namespace std;
-void insertionSort(vector<int> &arr, int n)
-{
-    for (int i = 1; i < n; i++)
-    {
-        int j = i - 1 ;
+
+void insertionSort(vector<int>& arr, int n) {
+    for (int i = 1; i < n; i++) {
         int current = arr[i];
-        for (; j >= 0; j--)
-        {
-            if (arr[j] > current)
-            {
-                arr[j + 1] = arr[j];
-            }
-            else
-            {
-                break;
-            }
+        int j = i - 1;
+        
+        // Shift elements of arr[0..i-1] that are greater than current
+        while (j >= 0 && arr[j] > current) {
+            arr[j + 1] = arr[j];
+            j--;
         }
-        arr[j + 1] = current;
+        arr[j + 1] = current; // Place current at its correct position
     }
 }
-// 1 4  7 | 2 34 21
-int main()
-{
 
+int main() {
     vector<int> v = {1, 4, 7, 2, 34, 12};
     insertionSort(v, v.size());
-    for (int i = 0; i < v.size(); i++)
-    {
+
+    // Output the sorted vector
+    for (int i = 0; i < v.size(); i++) {
         cout << v[i] << " ";
     }
+    cout << endl;
 
     return 0;
 }
